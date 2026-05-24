@@ -345,25 +345,34 @@
   @media (max-width: 900px) {
     .detail-grid { grid-template-columns: 1fr; gap: 40px; }
     .detail-grid.reverse { direction: ltr; }
+    /* Infografik immer UNTER dem Text auf Mobile */
+    .detail-grid.reverse > *:first-child { order: 2; }
+    .detail-grid.reverse > *:last-child  { order: 1; }
     .nav-links { display: none; }
     .nav-links.open {
-      display: flex; flex-direction: column;
-      position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
-      background: rgba(0,30,100,0.98);
-      backdrop-filter: blur(16px);
-      padding: 8px 0; gap: 0;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 60px; left: 0; right: 0; bottom: 0;
+      background: #003D8F;
       overflow-y: auto;
-      z-index: 99;
+      padding: 0;
+      gap: 0;
+      list-style: none;
     }
+    .nav-links.open li {
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .nav-links.open li:last-child { border-bottom: none; }
     .nav-links.open a {
-      padding: 18px 28px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: block;
+      color: #ffffff;
       font-size: 1.1rem;
       font-weight: 600;
-      letter-spacing: 0.2px;
+      padding: 20px 28px;
       white-space: normal;
+      text-decoration: none;
     }
-    .nav-links.open a:last-child { border-bottom: none; }
     .hamburger { display: flex; }
     .number-cards { grid-template-columns: repeat(2, 1fr); }
     .energy-icons { grid-template-columns: repeat(3, 1fr); }
