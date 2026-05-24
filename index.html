@@ -346,8 +346,24 @@
     .detail-grid { grid-template-columns: 1fr; gap: 40px; }
     .detail-grid.reverse { direction: ltr; }
     .nav-links { display: none; }
-    .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: var(--blue); padding: 16px; gap: 0; }
-    .nav-links.open a { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.95rem; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
+      background: rgba(0,30,100,0.98);
+      backdrop-filter: blur(16px);
+      padding: 8px 0; gap: 0;
+      overflow-y: auto;
+      z-index: 99;
+    }
+    .nav-links.open a {
+      padding: 18px 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      white-space: normal;
+    }
+    .nav-links.open a:last-child { border-bottom: none; }
     .hamburger { display: flex; }
     .number-cards { grid-template-columns: repeat(2, 1fr); }
     .energy-icons { grid-template-columns: repeat(3, 1fr); }
@@ -356,7 +372,17 @@
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .topics-grid { grid-template-columns: 1fr; }
     .highlights-cards { grid-template-columns: 1fr 1fr; }
+    .highlight-card { padding: 20px 14px; }
+    .highlight-card .hl-num { font-size: 1.85rem; word-break: break-word; }
+    .highlight-card .hl-label { font-size: 0.82rem; }
     .energy-icons { grid-template-columns: repeat(2, 1fr); }
+    .infographic { padding: 24px 20px; }
+    .infographic-dark { padding: 24px 20px; }
+  }
+  @media (max-width: 420px) {
+    .highlights-cards { grid-template-columns: 1fr; }
+    .highlight-card { padding: 22px 20px; }
+    .highlight-card .hl-num { font-size: 2.2rem; }
   }
 </style>
 </head>
@@ -1775,8 +1801,18 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
   function toggleMenu() {
-    document.getElementById('navLinks').classList.toggle('open');
+    const nav = document.getElementById('navLinks');
+    nav.classList.toggle('open');
+    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
   }
+
+  // Close mobile menu when a nav link is tapped
+  document.getElementById('navLinks').querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
 
   // Intersection Observer for reveal animations
   const observer = new IntersectionObserver((entries) => {
