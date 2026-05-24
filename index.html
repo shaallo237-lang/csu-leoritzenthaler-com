@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSU Regierungsprogramm 2023–2028 · In Bayern lebt es sich einfach besser</title>
+<meta name="description" content="Das Regierungsprogramm der CSU 2023–2028 – interaktiv aufbereitet. 15 Themenfelder, klare Ziele, starkes Bayern.">
+<style>
+  :root {
+    --blue: #003D8F;
+    --blue-mid: #0055C8;
+    --blue-light: #4A90D9;
+    --white: #ffffff;
+    --grey: #f4f6fb;
+    --grey-dark: #6b7a99;
+    --text: #1a2340;
+    --gold: #E8A020;
+    --green: #2E9E5E;
+    --radius: 16px;
+    --shadow: 0 4px 32px rgba(0,61,143,0.10);
+    --transition: 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(0,61,143,0.96);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 60px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  }
+  .nav-logo { color: white; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.5px; text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.82rem;
+    padding: 6px 10px; border-radius: 6px; transition: var(--transition);
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: white; background: rgba(255,255,255,0.12); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 24px; height: 2px; background: white; border-radius: 2px; transition: var(--transition); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #001F5C 0%, #003D8F 40%, #0055C8 70%, #1a6fdc 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 80px 24px 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero-diamonds {
+    position: absolute; inset: 0; overflow: hidden; opacity: 0.07;
+  }
+  .hero-diamonds svg { width: 100%; height: 100%; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.9); padding: 8px 20px; border-radius: 100px;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 {
+    color: white; font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 900;
+    line-height: 1.1; max-width: 900px; margin-bottom: 24px;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero p {
+    color: rgba(255,255,255,0.82); font-size: clamp(1rem, 2vw, 1.25rem);
+    max-width: 680px; line-height: 1.7; margin-bottom: 48px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .btn {
+    padding: 14px 32px; border-radius: 100px; font-size: 1rem; font-weight: 700;
+    text-decoration: none; transition: var(--transition); display: inline-block; cursor: pointer;
+    border: none;
+  }
+  .btn-primary { background: white; color: var(--blue); }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+  .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.5); }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+  .hero-scroll {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.5); font-size: 0.8rem; display: flex; flex-direction: column;
+    align-items: center; gap: 8px; animation: bounce 2s infinite;
+  }
+  .hero-scroll svg { width: 20px; height: 20px; }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--blue); padding: 40px 24px;
+  }
+  .stats-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 32px;
+    text-align: center;
+  }
+  .stat-item { color: white; }
+  .stat-number {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+    color: var(--gold); line-height: 1; margin-bottom: 8px;
+  }
+  .stat-label { font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.4; }
+
+  /* SECTION */
+  section { padding: 80px 24px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow {
+    display: inline-block; background: rgba(0,85,200,0.1); color: var(--blue-mid);
+    padding: 6px 16px; border-radius: 100px; font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;
+  }
+  h2 {
+    font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; line-height: 1.15;
+    color: var(--text); margin-bottom: 16px;
+  }
+  .section-lead {
+    font-size: 1.15rem; color: var(--grey-dark); line-height: 1.7; max-width: 680px;
+    margin-bottom: 56px;
+  }
+
+  /* TOPICS GRID */
+  .topics-section { background: var(--grey); }
+  .topics-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;
+  }
+  .topic-card {
+    background: white; border-radius: var(--radius); padding: 28px;
+    box-shadow: var(--shadow); cursor: pointer;
+    transition: var(--transition); border: 2px solid transparent;
+    position: relative; overflow: hidden;
+  }
+  .topic-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: var(--blue); transform: scaleX(0); transform-origin: left;
+    transition: var(--transition);
+  }
+  .topic-card:hover { transform: translateY(-4px); box-shadow: 0 12px 48px rgba(0,61,143,0.15); border-color: rgba(0,85,200,0.15); }
+  .topic-card:hover::before { transform: scaleX(1); }
+  .topic-icon {
+    width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center;
+    justify-content: center; margin-bottom: 16px; font-size: 1.6rem;
+  }
+  .topic-card h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; color: var(--text); }
+  .topic-card p { font-size: 0.88rem; color: var(--grey-dark); line-height: 1.6; }
+  .topic-card .topic-link {
+    display: inline-flex; align-items: center; gap: 6px; color: var(--blue-mid);
+    font-size: 0.82rem; font-weight: 700; margin-top: 16px; text-decoration: none;
+    transition: var(--transition);
+  }
+  .topic-card .topic-link:hover { gap: 10px; }
+
+  /* DETAIL SECTIONS */
+  .detail-section { padding: 80px 24px; }
+  .detail-section:nth-child(even) { background: var(--grey); }
+
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .detail-grid.reverse { direction: rtl; }
+  .detail-grid.reverse > * { direction: ltr; }
+
+  .detail-content h2 { margin-bottom: 20px; }
+  .detail-content p { color: var(--grey-dark); line-height: 1.8; margin-bottom: 16px; font-size: 0.97rem; }
+
+  .goals-list { list-style: none; margin: 24px 0; }
+  .goals-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(0,61,143,0.06); font-size: 0.93rem;
+  }
+  .goals-list li:last-child { border-bottom: none; }
+  .goals-list .check {
+    width: 22px; height: 22px; border-radius: 50%; background: rgba(0,85,200,0.1);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    color: var(--blue); font-size: 0.7rem; margin-top: 1px;
+  }
+
+  /* INFOGRAPHIC CARD */
+  .infographic {
+    background: white; border-radius: var(--radius); padding: 40px;
+    box-shadow: var(--shadow);
+  }
+  .infographic-dark {
+    background: var(--blue); border-radius: var(--radius); padding: 40px;
+    box-shadow: var(--shadow);
+  }
+
+  /* DONUT CHART */
+  .donut-wrap { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+  .donut-label {
+    position: absolute; text-align: center;
+    font-weight: 900; font-size: 1.8rem; color: var(--blue);
+    line-height: 1;
+  }
+  .donut-sub { font-size: 0.7rem; font-weight: 600; color: var(--grey-dark); margin-top: 4px; }
+
+  /* PROGRESS BARS */
+  .progress-item { margin-bottom: 24px; }
+  .progress-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .progress-label { font-size: 0.88rem; font-weight: 700; color: var(--text); }
+  .progress-value { font-size: 0.88rem; font-weight: 800; color: var(--blue); }
+  .progress-track {
+    height: 10px; background: rgba(0,61,143,0.08); border-radius: 100px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; border-radius: 100px;
+    background: linear-gradient(90deg, var(--blue), var(--blue-light));
+    width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+  }
+  .progress-fill.green { background: linear-gradient(90deg, var(--green), #4dc88c); }
+  .progress-fill.gold { background: linear-gradient(90deg, var(--gold), #f0c060); }
+
+  /* NUMBER CARDS */
+  .number-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .number-card {
+    background: rgba(0,85,200,0.06); border-radius: 12px; padding: 20px;
+    text-align: center;
+  }
+  .number-card .big { font-size: 1.8rem; font-weight: 900; color: var(--blue); line-height: 1; }
+  .number-card .small { font-size: 0.78rem; color: var(--grey-dark); margin-top: 6px; line-height: 1.4; }
+
+  /* ENERGY RINGS */
+  .energy-icons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+  .energy-icon-card {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px; padding: 20px 16px; text-align: center;
+  }
+  .energy-icon-card .icon { font-size: 2rem; margin-bottom: 10px; }
+  .energy-icon-card .label { color: rgba(255,255,255,0.8); font-size: 0.78rem; font-weight: 600; }
+  .energy-icon-card .val { color: var(--gold); font-size: 1.1rem; font-weight: 900; margin-top: 4px; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px;
+    width: 2px; background: linear-gradient(to bottom, var(--blue), var(--blue-light));
+  }
+  .timeline-item { position: relative; padding-bottom: 28px; }
+  .timeline-dot {
+    position: absolute; left: -32px; top: 4px; width: 18px; height: 18px;
+    border-radius: 50%; background: var(--blue); border: 3px solid var(--grey);
+    box-shadow: 0 0 0 2px var(--blue);
+  }
+  .timeline-year { font-size: 0.75rem; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 1px; }
+  .timeline-text { font-size: 0.9rem; color: var(--text); margin-top: 4px; line-height: 1.5; }
+
+  /* TAG CLOUD */
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
+  .tag {
+    background: rgba(0,85,200,0.08); color: var(--blue-mid);
+    padding: 6px 14px; border-radius: 100px; font-size: 0.82rem; font-weight: 600;
+  }
+  .tag.gold { background: rgba(232,160,32,0.12); color: #b07000; }
+  .tag.green { background: rgba(46,158,94,0.12); color: #1f7a49; }
+
+  /* HIGHLIGHTS STRIP */
+  .highlights-strip {
+    background: var(--blue); color: white;
+    padding: 56px 24px;
+  }
+  .highlights-inner { max-width: 1200px; margin: 0 auto; }
+  .highlights-strip h2 { color: white; margin-bottom: 40px; }
+  .highlights-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .highlight-card {
+    background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius); padding: 28px;
+  }
+  .highlight-card .hl-num { font-size: 2.4rem; font-weight: 900; color: var(--gold); line-height: 1; }
+  .highlight-card .hl-label { color: rgba(255,255,255,0.8); font-size: 0.88rem; margin-top: 8px; line-height: 1.5; }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, var(--blue) 0%, #0055C8 100%);
+    padding: 80px 24px; text-align: center;
+  }
+  .cta-section h2 { color: white; margin-bottom: 16px; }
+  .cta-section p { color: rgba(255,255,255,0.8); font-size: 1.1rem; max-width: 600px; margin: 0 auto 40px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--text); color: rgba(255,255,255,0.6);
+    padding: 40px 24px; text-align: center; font-size: 0.85rem; line-height: 1.8;
+  }
+  footer strong { color: white; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-left { opacity: 0; transform: translateX(-32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal-left.visible { opacity: 1; transform: none; }
+  .reveal-right { opacity: 0; transform: translateX(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal-right.visible { opacity: 1; transform: none; }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,20,60,0.7); z-index: 200;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: white; border-radius: 20px; max-width: 640px; width: 100%;
+    max-height: 80vh; overflow-y: auto; padding: 40px;
+    transform: scale(0.95); transition: transform 0.3s;
+    position: relative;
+  }
+  .modal-overlay.open .modal { transform: scale(1); }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
+    border-radius: 50%; background: var(--grey); border: none; cursor: pointer;
+    font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+    transition: var(--transition);
+  }
+  .modal-close:hover { background: #e0e5ef; }
+  .modal h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 16px; color: var(--blue); }
+  .modal p { color: var(--grey-dark); line-height: 1.8; margin-bottom: 12px; font-size: 0.95rem; }
+  .modal ul { list-style: none; }
+  .modal ul li { padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.92rem; display: flex; gap: 10px; }
+  .modal ul li::before { content: '✓'; color: var(--blue); font-weight: 900; flex-shrink: 0; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .detail-grid { grid-template-columns: 1fr; gap: 40px; }
+    .detail-grid.reverse { direction: ltr; }
+    .nav-links { display: none; }
+    .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: var(--blue); padding: 16px; gap: 0; }
+    .nav-links.open a { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.95rem; }
+    .hamburger { display: flex; }
+    .number-cards { grid-template-columns: repeat(2, 1fr); }
+    .energy-icons { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .topics-grid { grid-template-columns: 1fr; }
+    .highlights-cards { grid-template-columns: 1fr 1fr; }
+    .energy-icons { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">CSU <span>2023–28</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#wirtschaft">Wirtschaft</a></li>
+    <li><a href="#energie">Energie</a></li>
+    <li><a href="#sicherheit">Sicherheit</a></li>
+    <li><a href="#familien">Familien</a></li>
+    <li><a href="#bildung">Bildung</a></li>
+    <li><a href="#hightech">Hightech</a></li>
+    <li><a href="#umwelt">Umwelt</a></li>
+    <li><a href="#mobilitaet">Mobilität</a></li>
+    <li><a href="#gesundheit">Gesundheit</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-diamonds">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="diamonds" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+          <polygon points="5,0 10,5 5,10 0,5" fill="white"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#diamonds)"/>
+    </svg>
+  </div>
+  <div class="hero-badge">🏛 Regierungsprogramm der CSU · Landtagswahl 8. Oktober 2023</div>
+  <h1>In Bayern lebt es sich <em>einfach besser.</em></h1>
+  <p>Unser Plan für ein starkes, stabiles und liebenswertes Bayern – 15 Themenbereiche, klare Ziele, konkrete Maßnahmen für alle Menschen im Freistaat.</p>
+  <div class="hero-cta">
+    <a href="#uebersicht" class="btn btn-primary">Alle Themen entdecken</a>
+    <a href="#highlights" class="btn btn-outline">Die wichtigsten Zahlen</a>
+  </div>
+  <div class="hero-scroll">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Mehr erfahren
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <div class="stat-number" data-count="1" data-suffix=".">Nr. 1</div>
+      <div class="stat-label">Niedrigste Arbeitslosenquote<br>in Deutschland</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">
+        <span class="count-up" data-target="9" data-suffix="+">0</span>/10
+      </div>
+      <div class="stat-label">Bayern leben gerne<br>im Freistaat</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number"><span class="count-up" data-target="45" data-suffix="T">0</span></div>
+      <div class="stat-label">Polizistinnen und<br>Polizisten im Dienst</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number"><span class="count-up" data-target="4" data-prefix="" data-suffix=" Mrd.">0</span></div>
+      <div class="stat-label">Euro pro Jahr für<br>Familienpolitik</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number"><span class="count-up" data-target="5" data-suffix=" Mrd.">0</span></div>
+      <div class="stat-label">Euro Hightech Agenda<br>bis 2027</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number"><span class="count-up" data-target="2040"></span></div>
+      <div class="stat-label">Ziel: Bayern<br>klimaneutral</div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="topics-section" id="uebersicht">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-eyebrow">Das Programm</span>
+      <h2>15 Themen. Ein Ziel.<br>Ein starkes Bayern.</h2>
+      <p class="section-lead">Die CSU hat einen klaren Plan für die kommenden fünf Jahre. Erfahren Sie, was in jedem Bereich geplant ist.</p>
+    </div>
+    <div class="topics-grid">
+      <div class="topic-card reveal" onclick="openModal('wirtschaft')">
+        <div class="topic-icon" style="background:rgba(0,85,200,0.1)">💼</div>
+        <h3>Wohlstand &amp; Entlastung</h3>
+        <p>Bayerns Wirtschaftsstärke sichern, Bürokratie abbauen, Steuern senken und den Mittelstand stärken.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+      <div class="topic-card reveal" onclick="openModal('soziales')">
+        <div class="topic-icon" style="background:rgba(46,158,94,0.1)">🤝</div>
+        <h3>Soziale Sicherheit</h3>
+        <p>Vollbeschäftigung, faire Rente, Teilhabe für alle Generationen und ein starkes soziales Netz.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+      <div class="topic-card reveal" onclick="openModal('energie')">
+        <div class="topic-icon" style="background:rgba(232,160,32,0.1)">⚡</div>
+        <h3>Energie</h3>
+        <p>Erneuerbare bis 2030 verdoppeln, 1.000 neue Windräder, Photovoltaik verdreifachen und Wasserstoffland Nr. 1.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+      <div class="topic-card reveal" onclick="openModal('sicherheit')">
+        <div class="topic-icon" style="background:rgba(220,50,50,0.1)">🛡️</div>
+        <h3>Sicherheit &amp; Rechtsstaat</h3>
+        <p>Niedrigste Kriminalitätsrate aller Länder, 1.000 neue Polizeistellen, starke Justiz.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+      <div class="topic-card reveal" onclick="openModal('migration')">
+        <div class="topic-icon" style="background:rgba(0,85,200,0.1)">🌍</div>
+        <h3>Migration &amp; Integration</h3>
+        <p>Niedrigste Ausländerarbeitslosigkeit in Deutschland, klare Steuerung, Humanität und Ordnung.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+      <div class="topic-card reveal" onclick="openModal('familien')">
+        <div class="topic-icon" style="background:rgba(232,100,150,0.1)">👨‍👩‍👧‍👦</div>
+        <h3>Familien</h3>
+        <p>Familiengeld, 180.000 neue Betreuungsplätze, Wahlfreiheit und das stärkste Familienpaket Deutschlands.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+      <div class="topic-card reveal" onclick="openModal('bildung')">
+        <div class="topic-icon" style="background:rgba(100,50,200,0.1)">📚</div>
+        <h3>Bildung</h3>
+        <p>8.000 neue Lehrerstellen, Tablets für alle Schüler, kostenlose Meisterausbildung, beste Ergebnisse.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+      <div class="topic-card reveal" onclick="openModal('hightech')">
+        <div class="topic-icon" style="background:rgba(0,150,220,0.1)">🚀</div>
+        <h3>Heimat &amp; Hightech</h3>
+        <p>Silicon Valley Europas – 5 Mrd. Hightech Agenda, 1.000 neue Professuren, KI und Quantencomputing.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+      <div class="topic-card reveal" onclick="openModal('landwirtschaft')">
+        <div class="topic-icon" style="background:rgba(100,180,50,0.1)">🌾</div>
+        <h3>Landwirtschaft</h3>
+        <p>Stärkung der Familienbetriebe, regionale Lebensmittel, Bürokratieabbau und Tierwohl.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+      <div class="topic-card reveal" onclick="openModal('umwelt')">
+        <div class="topic-icon" style="background:rgba(46,158,94,0.1)">🌿</div>
+        <h3>Umwelt &amp; Klima</h3>
+        <p>1 Mrd. Euro/Jahr für Klimaschutz, 55.000 Hektar Moore renaturieren, klimaneutral bis 2040.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+      <div class="topic-card reveal" onclick="openModal('laendlich')">
+        <div class="topic-icon" style="background:rgba(150,100,50,0.1)">🏘️</div>
+        <h3>Ländlicher Raum</h3>
+        <p>5.000+ Arbeitsplätze in den ländlichen Raum, 99 % Gigabitversorgung, starke Kommunen.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+      <div class="topic-card reveal" onclick="openModal('mobilitaet')">
+        <div class="topic-icon" style="background:rgba(50,150,230,0.1)">🚗</div>
+        <h3>Mobilität</h3>
+        <p>1.500 km neue Radwege, 2.000 neue Klimabusse, 2. Stammstrecke München, E-Mobilität stärken.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+      <div class="topic-card reveal" onclick="openModal('wohnen')">
+        <div class="topic-icon" style="background:rgba(200,100,50,0.1)">🏠</div>
+        <h3>Wohnraum</h3>
+        <p>Eigenheim statt Plattenbau, niedrigste Grunderwerbsteuer aller Bundesländer, Bayern-Darlehen.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+      <div class="topic-card reveal" onclick="openModal('gesundheit')">
+        <div class="topic-icon" style="background:rgba(220,50,100,0.1)">🏥</div>
+        <h3>Gesundheit &amp; Pflege</h3>
+        <p>1 Mrd. Euro/Jahr Krankenhausinvestitionen, 3.000 neue Medizinstudienplätze, 8.000 neue Pflegeplätze.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+      <div class="topic-card reveal" onclick="openModal('kultur')">
+        <div class="topic-icon" style="background:rgba(150,50,200,0.1)">🎭</div>
+        <h3>Zusammenhalt &amp; Kultur</h3>
+        <p>Bayerische Identität bewahren, Ehrenamt stärken, jüdisches Leben schützen, Demokratie festigen.</p>
+        <a class="topic-link" href="#">Mehr erfahren →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<div class="highlights-strip" id="highlights">
+  <div class="highlights-inner">
+    <div class="reveal">
+      <span class="section-eyebrow" style="background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9)">Bayerische Erfolge</span>
+      <h2>Bayern in Zahlen.</h2>
+    </div>
+    <div class="highlights-cards">
+      <div class="highlight-card reveal"><div class="hl-num">Nr. 1</div><div class="hl-label">Niedrigste Jugendarbeitslosigkeit in ganz Europa</div></div>
+      <div class="highlight-card reveal"><div class="hl-num">AAA</div><div class="hl-label">Bestnote für bayerische Haushaltspolitik – wieder und wieder</div></div>
+      <div class="highlight-card reveal"><div class="hl-num">100T+</div><div class="hl-label">Lehrkräfte – erstmals mehr als 100.000 im bayerischen Schuldienst</div></div>
+      <div class="highlight-card reveal"><div class="hl-num">3,5 Mrd.</div><div class="hl-label">Euro Familiengeld seit 2018 für über 800.000 Kinder ausgezahlt</div></div>
+      <div class="highlight-card reveal"><div class="hl-num">25 %</div><div class="hl-label">Bayerns Anteil am gesamtdeutschen Ausbau Erneuerbarer Energien 2022</div></div>
+      <div class="highlight-card reveal"><div class="hl-num">20 Mrd.</div><div class="hl-label">Euro Kommunalfinanzausgleich 2023 – jeder 3. Staatshaushaltseuro</div></div>
+      <div class="highlight-card reveal"><div class="hl-num">3,5 %</div><div class="hl-label">Grunderwerbsteuer – niedrigster Satz aller Bundesländer</div></div>
+      <div class="highlight-card reveal"><div class="hl-num">700 Mio.</div><div class="hl-label">Euro Investitionen in Wasserstofftechnologie geplant</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WIRTSCHAFT -->
+<div class="detail-section" id="wirtschaft">
+  <div class="container">
+    <div class="detail-grid">
+      <div class="detail-content reveal-left">
+        <span class="section-eyebrow">Thema 1</span>
+        <h2>Wohlstand schützen, Mitte entlasten.</h2>
+        <p>Bayern ist eine der wirtschaftsstärksten Regionen Europas – mit der höchsten Investitionsquote aller Bundesländer, stabilen Finanzen und dem Spitzenrating AAA. Die CSU will diesen Wohlstand dauerhaft sichern.</p>
+        <ul class="goals-list">
+          <li><span class="check">✓</span>Steuererhöhungen ablehnen – stattdessen Entlastungen für Bürger und Unternehmen</li>
+          <li><span class="check">✓</span>Solidaritätszuschlag und kalte Progression vollständig abschaffen</li>
+          <li><span class="check">✓</span>Stromsteuer auf europäisches Mindestmaß senken</li>
+          <li><span class="check">✓</span>Mehrwertsteuer auf alle Lebensmittel senken</li>
+          <li><span class="check">✓</span>Pendlerpauschale ab 1. Kilometer auf 38 Cent erhöhen</li>
+          <li><span class="check">✓</span>Bürokratie-Moratorium: 2 Jahre Pause bei Verwaltungsvorschriften</li>
+          <li><span class="check">✓</span>Kostenfreie Meisterausbildung – Meister und Master gleichwertig</li>
+          <li><span class="check">✓</span>Erbschaftsteuer: höhere Freibeträge, niedrigere Sätze, Regionalisierung</li>
+        </ul>
+        <div class="tag-cloud">
+          <span class="tag">AAA-Rating</span>
+          <span class="tag">Keine neuen Schulden</span>
+          <span class="tag gold">Mittelstand stärken</span>
+          <span class="tag">Handwerk fördern</span>
+          <span class="tag green">Vollbeschäftigung</span>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="infographic">
+          <h3 style="margin-bottom:24px;font-size:1.1rem;color:var(--blue)">Bayern im Vergleich</h3>
+          <div class="progress-item">
+            <div class="progress-header"><span class="progress-label">Wirtschaftsstärke (EU-Rang)</span><span class="progress-value">Top 5</span></div>
+            <div class="progress-track"><div class="progress-fill" data-width="92"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header"><span class="progress-label">Investitionsquote (Länder-Rang)</span><span class="progress-value">Nr. 1</span></div>
+            <div class="progress-track"><div class="progress-fill" data-width="100"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header"><span class="progress-label">Haushaltsbonität</span><span class="progress-value">AAA</span></div>
+            <div class="progress-track"><div class="progress-fill gold" data-width="100"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header"><span class="progress-label">Niedrigste Arbeitslosigkeit</span><span class="progress-value">Nr. 1</span></div>
+            <div class="progress-track"><div class="progress-fill green" data-width="100"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header"><span class="progress-label">Meiste Industriearbeitsplätze</span><span class="progress-value">Nr. 1</span></div>
+            <div class="progress-track"><div class="progress-fill" data-width="98"></div></div>
+          </div>
+          <div style="margin-top:28px; padding-top:20px; border-top:1px solid rgba(0,0,0,0.06)">
+            <div class="number-cards">
+              <div class="number-card">
+                <div class="big">0</div>
+                <div class="small">Neue Schulden – ausgeglichener Haushalt</div>
+              </div>
+              <div class="number-card">
+                <div class="big">Nr. 1</div>
+                <div class="small">Niedrigste Kriminalitätsrate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ENERGIE -->
+<div class="detail-section" id="energie" style="background:var(--grey)">
+  <div class="container">
+    <div class="detail-grid reverse">
+      <div class="reveal-right">
+        <div class="infographic-dark">
+          <h3 style="color:white;margin-bottom:8px;font-size:1.1rem">Energieziele bis 2030</h3>
+          <p style="color:rgba(255,255,255,0.6);font-size:0.82rem;margin-bottom:24px">Bayern – Vorreiter bei Erneuerbaren Energien</p>
+          <div class="progress-item">
+            <div class="progress-header"><span class="progress-label" style="color:rgba(255,255,255,0.9)">Erneuerbare Energien</span><span class="progress-value">×2 bis 2030</span></div>
+            <div class="progress-track"><div class="progress-fill gold" data-width="75"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header"><span class="progress-label" style="color:rgba(255,255,255,0.9)">Photovoltaik</span><span class="progress-value">×3 bis 2030</span></div>
+            <div class="progress-track"><div class="progress-fill gold" data-width="55"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header"><span class="progress-label" style="color:rgba(255,255,255,0.9)">Geothermie-Wärmeziel 2050</span><span class="progress-value">25 %</span></div>
+            <div class="progress-track"><div class="progress-fill" data-width="40"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header"><span class="progress-label" style="color:rgba(255,255,255,0.9)">Bioenergie Steigerung</span><span class="progress-value">+15 % bis 2028</span></div>
+            <div class="progress-track"><div class="progress-fill green" data-width="50"></div></div>
+          </div>
+          <div class="energy-icons">
+            <div class="energy-icon-card"><div class="icon">🌬️</div><div class="label">Windkraft</div><div class="val">1.000</div></div>
+            <div class="energy-icon-card"><div class="icon">☀️</div><div class="label">PV Ziel</div><div class="val">×3</div></div>
+            <div class="energy-icon-card"><div class="icon">💧</div><div class="label">Wasserkraft</div><div class="val">25 %</div></div>
+            <div class="energy-icon-card"><div class="icon">🌋</div><div class="label">Geothermie</div><div class="label" style="color:var(--gold)">Nr. 1</div></div>
+            <div class="energy-icon-card"><div class="icon">⚗️</div><div class="label">Wasserstoff</div><div class="val">700 Mio.</div></div>
+            <div class="energy-icon-card"><div class="icon">⚡</div><div class="label">Kernenergie</div><div class="label" style="color:var(--gold)">Weiterbetrieb</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-content reveal-left">
+        <span class="section-eyebrow">Thema 3</span>
+        <h2>Bayern sichert seine Energie.</h2>
+        <p>Bayern ist bereits Spitzenreiter bei Erneuerbaren Energien: Kein Bundesland hat mehr installierte Leistung. Wir wollen so viel Energie wie möglich in Bayern produzieren – bezahlbar, grundlastfähig und klimaneutral.</p>
+        <ul class="goals-list">
+          <li><span class="check">✓</span>1.000 neue Windenergieanlagen bis 2030 – neue Gesellschaft „Bayernwind"</li>
+          <li><span class="check">✓</span>Photovoltaik bis 2030 verdreifachen – auf staatlichen Gebäuden bis 2025</li>
+          <li><span class="check">✓</span>Wasserkraftanteil auf 25 % der Bruttostromerzeugung steigern</li>
+          <li><span class="check">✓</span>700 Mio. Euro in Wasserstofftechnologie – 50 Elektrolyseure in ganz Bayern</li>
+          <li><span class="check">✓</span>Bayern zum Wasserstoffland Nr. 1 in Europa entwickeln</li>
+          <li><span class="check">✓</span>Kernkraftwerke weiterbetreiben – als wichtige Grundlastenergie</li>
+          <li><span class="check">✓</span>Forschungsreaktor und Energieforschungs-Campus gründen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SICHERHEIT -->
+<div class="detail-section" id="sicherheit">
+  <div class="container">
+    <div class="detail-grid">
+      <div class="detail-content reveal-left">
+        <span class="section-eyebrow">Thema 4</span>
+        <h2>Bayern ist das sicherste Bundesland.</h2>
+        <p>Wir garantieren: Bayern bleibt das sicherste Bundesland Deutschlands. Null Toleranz gegen Gewalt, Opferschutz vor Täterschutz – das ist unser Weg. 45.000 Polizistinnen und Polizisten schützen täglich alle Menschen im Freistaat.</p>
+        <ul class="goals-list">
+          <li><span class="check">✓</span>1.000 neue Stellen bei Polizeiinspektionen bis 2028</li>
+          <li><span class="check">✓</span>Voll digitalisierter Streifenwagen – weniger Bürokratie, mehr Präsenz</li>
+          <li><span class="check">✓</span>KI in der Polizeiarbeit sinnvoll einsetzen</li>
+          <li><span class="check">✓</span>Deutschlands erster Hate-Speech-Beauftragter – weiter stärken</li>
+          <li><span class="check">✓</span>Kampf gegen Kindesmissbrauch – Sonderstaatsanwaltschaft stärken</li>
+          <li><span class="check">✓</span>Modernisierung und Digitalisierung der Justiz</li>
+          <li><span class="check">✓</span>Bayerische Grenzpolizei auf 1.000 Stellen ausbauen</li>
+        </ul>
+      </div>
+      <div class="reveal-right">
+        <div class="infographic">
+          <h3 style="margin-bottom:24px;font-size:1.1rem;color:var(--blue)">Sicherheit in Bayern</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px">
+            <div style="text-align:center;padding:24px 16px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="font-size:2.2rem;font-weight:900;color:var(--blue);line-height:1">Nr. 1</div>
+              <div style="font-size:0.78rem;color:var(--grey-dark);margin-top:8px;line-height:1.4">Niedrigste Kriminalitätsbelastung aller Bundesländer</div>
+            </div>
+            <div style="text-align:center;padding:24px 16px;background:rgba(46,158,94,0.08);border-radius:12px">
+              <div style="font-size:2.2rem;font-weight:900;color:var(--green);line-height:1">Nr. 1</div>
+              <div style="font-size:0.78rem;color:var(--grey-dark);margin-top:8px;line-height:1.4">Höchste Aufklärungsquote aller Bundesländer</div>
+            </div>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">Sofort</div>
+              <div class="timeline-text">KI-Einsatz in der Polizeiarbeit und digitaler Streifenwagen ausbauen</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">Bis 2025</div>
+              <div class="timeline-text">Sicherheitsupdate für alle Gerichtsgebäude in Bayern</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">Bis 2028</div>
+              <div class="timeline-text">1.000 neue Polizeistellen in den Inspektionen vor Ort</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">Dauerhaft</div>
+              <div class="timeline-text">Null Toleranz gegen Extremismus – von links, rechts und religiös motiviert</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAMILIEN -->
+<div class="detail-section" id="familien" style="background:var(--grey)">
+  <div class="container">
+    <div class="detail-grid reverse">
+      <div class="reveal-right">
+        <div class="infographic">
+          <h3 style="margin-bottom:24px;font-size:1.1rem;color:var(--blue)">Familienpaket Bayern</h3>
+          <div class="number-cards" style="grid-template-columns:repeat(2,1fr);margin-bottom:28px">
+            <div class="number-card">
+              <div class="big" style="font-size:1.5rem;color:var(--gold)">3.000 €</div>
+              <div class="small">Familiengeld/Jahr pro Kind (2.–3. Lebensjahr)</div>
+            </div>
+            <div class="number-card">
+              <div class="big" style="font-size:1.5rem;color:var(--gold)">3.600 €</div>
+              <div class="small">Familiengeld/Jahr ab dem dritten Kind</div>
+            </div>
+            <div class="number-card">
+              <div class="big">180T</div>
+              <div class="small">Neue Betreuungsplätze bis 2028</div>
+            </div>
+            <div class="number-card">
+              <div class="big">40T €</div>
+              <div class="small">Unterstützung für Familie mit 3 Kindern bis zur Einschulung</div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header"><span class="progress-label">Neue Kita-Plätze (unter 6 Jahre)</span><span class="progress-value">50.000</span></div>
+            <div class="progress-track"><div class="progress-fill" data-width="70"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header"><span class="progress-label">Neue Hortplätze (Grundschulalter)</span><span class="progress-value">130.000</span></div>
+            <div class="progress-track"><div class="progress-fill gold" data-width="85"></div></div>
+          </div>
+          <p style="font-size:0.82rem;color:var(--grey-dark);margin-top:20px">
+            ✅ Kein anderes Bundesland unterstützt Familien so stark wie Bayern. In keinem anderen Land leben so wenige Kinder in Armut.
+          </p>
+        </div>
+      </div>
+      <div class="detail-content reveal-left">
+        <span class="section-eyebrow">Thema 6</span>
+        <h2>Bayern – Familienland Nr. 1.</h2>
+        <p>Bayern investiert pro Jahr über 4 Milliarden Euro in familienpolitische Leistungen. Seit 2018 wurden 3,5 Mrd. Euro Familiengeld für über 800.000 Kinder ausgezahlt. Wir wollen Bayern als Familienland Nr. 1 erhalten.</p>
+        <ul class="goals-list">
+          <li><span class="check">✓</span>Bayerisches Familiengeld fortführen – unabhängig vom Kita-Besuch</li>
+          <li><span class="check">✓</span>Ganztagsversprechen: 180.000 neue Betreuungsplätze bis 2028</li>
+          <li><span class="check">✓</span>200 neue Studienanfängerplätze für Soziale Arbeit und Kindheitspädagogik</li>
+          <li><span class="check">✓</span>Erzieherausbildung stärken und Sozialberufe vom Schulgeld befreien</li>
+          <li><span class="check">✓</span>Elterngeld partnerschaftlicher gestalten und inflationsanpassen</li>
+          <li><span class="check">✓</span>Home-Office und mobiles Arbeiten für bessere Vereinbarkeit fördern</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BILDUNG -->
+<div class="detail-section" id="bildung">
+  <div class="container">
+    <div class="detail-grid">
+      <div class="detail-content reveal-left">
+        <span class="section-eyebrow">Thema 7</span>
+        <h2>Beste Bildungschancen für alle.</h2>
+        <p>Bayern hat das Bildungssystem mit der größten Durchlässigkeit, den meisten Aufstiegschancen und besten Ergebnissen in ganz Deutschland. Wir halten an bewährten Strukturen fest und investieren massiv in die Zukunft.</p>
+        <ul class="goals-list">
+          <li><span class="check">✓</span>8.000 neue Stellen für Lehrkräfte, Verwaltung und Sozialpädagogen bis 2028</li>
+          <li><span class="check">✓</span>Tablets für alle Schülerinnen und Schüler bis 2028</li>
+          <li><span class="check">✓</span>71.000 digitale Klassenzimmer und Bayern-Cloud ausbauen</li>
+          <li><span class="check">✓</span>Jedes Kind lernt schwimmen – 50€ Seepferdchen-Gutschein</li>
+          <li><span class="check">✓</span>Deutsch vor der Einschulung: verbindliche Sprachfeststellungstests</li>
+          <li><span class="check">✓</span>Grundschulgarantie: jede Grundschule bleibt, wo Eltern es wünschen</li>
+          <li><span class="check">✓</span>A13 für Grund- und Mittelschullehrer vollständig bis 2027</li>
+        </ul>
+        <div class="tag-cloud">
+          <span class="tag">Kostenfreie Meisterausbildung</span>
+          <span class="tag gold">Meister = Master</span>
+          <span class="tag">„Tag des Handwerks"</span>
+          <span class="tag green">Kein Zentralismus</span>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="infographic">
+          <h3 style="margin-bottom:24px;font-size:1.1rem;color:var(--blue)">Bildung in Bayern 2028</h3>
+          <div style="display:grid;gap:12px">
+            <div style="display:flex;align-items:center;gap:16px;padding:16px;background:rgba(0,85,200,0.05);border-radius:12px">
+              <div style="font-size:2rem">📱</div>
+              <div>
+                <div style="font-weight:800;font-size:0.95rem">Tablets für alle</div>
+                <div style="font-size:0.8rem;color:var(--grey-dark)">Jede Schülerin, jeder Schüler erhält bis 2028 ein Tablet</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;padding:16px;background:rgba(0,85,200,0.05);border-radius:12px">
+              <div style="font-size:2rem">👩‍🏫</div>
+              <div>
+                <div style="font-weight:800;font-size:0.95rem">8.000 neue Stellen</div>
+                <div style="font-size:0.8rem;color:var(--grey-dark)">Lehrkräfte, Sozialpädagogen und Verwaltungskräfte</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;padding:16px;background:rgba(0,85,200,0.05);border-radius:12px">
+              <div style="font-size:2rem">🏊</div>
+              <div>
+                <div style="font-weight:800;font-size:0.95rem">Schwimmen für alle</div>
+                <div style="font-size:0.8rem;color:var(--grey-dark)">50€ Gutschein für Seepferdchen-Kurs ab 2023/24</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;padding:16px;background:rgba(100,50,200,0.05);border-radius:12px">
+              <div style="font-size:2rem">🎓</div>
+              <div>
+                <div style="font-weight:800;font-size:0.95rem">Meisterausbildung kostenlos</div>
+                <div style="font-size:0.8rem;color:var(--grey-dark)">Bayern – einziges Bundesland mit kostenfreier Meisterausbildung</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HIGHTECH -->
+<div class="detail-section" id="hightech" style="background:linear-gradient(135deg,#001F5C,#003D8F)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:56px" class="reveal">
+      <span class="section-eyebrow" style="background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9)">Thema 8</span>
+      <h2 style="color:white">Das Silicon Valley Europas.</h2>
+      <p style="color:rgba(255,255,255,0.75);max-width:680px;margin:0 auto;font-size:1.1rem;line-height:1.7">Die Hightech Agenda ist das größte Innovationsprogramm in der Geschichte des Freistaats. Bayern investiert mehr in Forschung und Entwicklung als jedes andere Bundesland.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px" class="reveal">
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px">
+        <div style="font-size:2.4rem;font-weight:900;color:var(--gold)">5 Mrd.</div>
+        <div style="color:rgba(255,255,255,0.85);margin-top:8px;font-size:0.9rem;line-height:1.6">Euro Hightech Agenda – Investitionen in Bayerns Zukunft bis 2027</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px">
+        <div style="font-size:2.4rem;font-weight:900;color:var(--gold)">1.000</div>
+        <div style="color:rgba(255,255,255,0.85);margin-top:8px;font-size:0.9rem;line-height:1.6">Neue Professuren an bayerischen Hochschulen</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px">
+        <div style="font-size:2.4rem;font-weight:900;color:var(--gold)">13.000+</div>
+        <div style="color:rgba(255,255,255,0.85);margin-top:8px;font-size:0.9rem;line-height:1.6">Neue Studienplätze in Schlüsseltechnologien</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px">
+        <div style="font-size:2.4rem;font-weight:900;color:var(--gold)">600 Mio.</div>
+        <div style="color:rgba(255,255,255,0.85);margin-top:8px;font-size:0.9rem;line-height:1.6">Euro für KI und SuperTech – meiste Investitionen in Deutschland</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px">
+        <div style="font-size:2.4rem;font-weight:900;color:var(--gold)">8</div>
+        <div style="color:rgba(255,255,255,0.85);margin-top:8px;font-size:0.9rem;line-height:1.6">Supercomputer in Bayern – so viele wie Südkorea</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px">
+        <div style="font-size:2.4rem;font-weight:900;color:var(--gold)">20</div>
+        <div style="color:rgba(255,255,255,0.85);margin-top:8px;font-size:0.9rem;line-height:1.6">Spitzenforschungsinstitute im ganzen Freistaat geplant</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:40px" class="reveal">
+      <span style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);padding:8px 18px;border-radius:100px;font-size:0.82rem;font-weight:600">🤖 Künstliche Intelligenz</span>
+      <span style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);padding:8px 18px;border-radius:100px;font-size:0.82rem;font-weight:600">⚛️ Quantencomputing</span>
+      <span style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);padding:8px 18px;border-radius:100px;font-size:0.82rem;font-weight:600">🛸 Luft &amp; Raumfahrt</span>
+      <span style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);padding:8px 18px;border-radius:100px;font-size:0.82rem;font-weight:600">🤖 Robotik</span>
+      <span style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);padding:8px 18px;border-radius:100px;font-size:0.82rem;font-weight:600">🧬 Biotech &amp; Medizin</span>
+      <span style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);padding:8px 18px;border-radius:100px;font-size:0.82rem;font-weight:600">💚 CleanTech</span>
+      <span style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);padding:8px 18px;border-radius:100px;font-size:0.82rem;font-weight:600">🔬 Halbleitertechnologie</span>
+    </div>
+  </div>
+</div>
+
+<!-- UMWELT -->
+<div class="detail-section" id="umwelt">
+  <div class="container">
+    <div class="detail-grid">
+      <div class="detail-content reveal-left">
+        <span class="section-eyebrow">Thema 10</span>
+        <h2>Bayern schützt Umwelt und Klima.</h2>
+        <p>Bayern ist jetzt schon Premiumland beim Klimaschutz. Als einziges Bundesland investieren wir 1 Milliarde Euro pro Jahr – insgesamt 22 Mrd. Euro bis 2040. Klimaschutz gelingt nur mit Technologieoffenheit und im Einklang mit den Bürgern.</p>
+        <ul class="goals-list">
+          <li><span class="check">✓</span>Bayern bis 2040 klimaneutral – 22 Mrd. Euro bis 2040 investiert</li>
+          <li><span class="check">✓</span>55.000 Hektar Moore als natürliche CO2-Speicher renaturieren</li>
+          <li><span class="check">✓</span>Bayern ist Waldland Nr. 1 – Mischwald und Klimaresistenz stärken</li>
+          <li><span class="check">✓</span>Unser Wasser schützen: Kommunal vor Kommerz</li>
+          <li><span class="check">✓</span>Artenschutz ausbauen – beste Naturschutzprogramme Deutschlands</li>
+          <li><span class="check">✓</span>Hochwasserschutz weiterentwickeln – Schutz vor Sturzfluten stärken</li>
+          <li><span class="check">✓</span>Streuobstpakt, Naturparke und Biosphärenreservate stärken</li>
+        </ul>
+      </div>
+      <div class="reveal-right">
+        <div class="infographic">
+          <h3 style="margin-bottom:24px;font-size:1.1rem;color:var(--green)">Klimaziele im Überblick</h3>
+          <div style="display:grid;gap:16px">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(46,158,94,0.08);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">🎯</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Klimaneutralität</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">Bayern als Gesamtziel</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.3rem;color:var(--green)">2040</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(46,158,94,0.08);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">🌿</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Moor-Renaturierung</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">Natürliche CO2-Speicher</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.1rem;color:var(--green)">55.000 ha</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">💰</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Klimainvestitionen</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">Bis 2040</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.1rem;color:var(--blue)">22 Mrd. €</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">🌲</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Waldland Nr. 1</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">Klimaresistenter Mischwald</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.1rem;color:var(--blue)">Bayern</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILITAET -->
+<div class="detail-section" id="mobilitaet" style="background:var(--grey)">
+  <div class="container">
+    <div class="detail-grid reverse">
+      <div class="reveal-right">
+        <div class="infographic">
+          <h3 style="margin-bottom:24px;font-size:1.1rem;color:var(--blue)">Mobilität der Zukunft</h3>
+          <div style="display:grid;gap:14px">
+            <div style="display:flex;gap:16px;align-items:center;padding:16px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="font-size:1.8rem;flex-shrink:0">🚲</div>
+              <div><div style="font-weight:800;font-size:0.92rem">1.500 km neue Radwege bis 2030</div><div style="font-size:0.78rem;color:var(--grey-dark)">Neues Bayerisches Radgesetz • Fahrrad im ÖPNV für 1 €</div></div>
+            </div>
+            <div style="display:flex;gap:16px;align-items:center;padding:16px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="font-size:1.8rem;flex-shrink:0">🚌</div>
+              <div><div style="font-weight:800;font-size:0.92rem">2.000 neue Klimabusse</div><div style="font-size:0.78rem;color:var(--grey-dark)">Vollständig emissionsfreier Busverkehr bis 2040</div></div>
+            </div>
+            <div style="display:flex;gap:16px;align-items:center;padding:16px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="font-size:1.8rem;flex-shrink:0">🚂</div>
+              <div><div style="font-weight:800;font-size:0.92rem">2. Stammstrecke München</div><div style="font-size:0.78rem;color:var(--grey-dark)">Größtes Infrastrukturprojekt Bayerns • ICE-Anschluss Flughafen</div></div>
+            </div>
+            <div style="display:flex;gap:16px;align-items:center;padding:16px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="font-size:1.8rem;flex-shrink:0">🚗</div>
+              <div><div style="font-weight:800;font-size:0.92rem">"Ja" zum Auto – technologieoffen</div><div style="font-size:0.78rem;color:var(--grey-dark)">Kein generelles Verbrennerverbot • E-Fuel • Wasserstoff</div></div>
+            </div>
+            <div style="display:flex;gap:16px;align-items:center;padding:16px;background:rgba(46,158,94,0.08);border-radius:12px">
+              <div style="font-size:1.8rem;flex-shrink:0">⚡</div>
+              <div><div style="font-weight:800;font-size:0.92rem">Meiste E-Ladepunkte</div><div style="font-size:0.78rem;color:var(--grey-dark)">Bayern hat mehr Ladepunkte als jedes andere Bundesland</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-content reveal-left">
+        <span class="section-eyebrow">Thema 12</span>
+        <h2>Mobilität in Stadt und Land sichern.</h2>
+        <p>Mobilität ist ein Grundbedürfnis und für das Flächenland Bayern von zentraler Bedeutung. Wir spielen Mobilitätsarten nicht gegeneinander aus, sondern bauen sie technologieoffen aus und vernetzen sie intelligent.</p>
+        <ul class="goals-list">
+          <li><span class="check">✓</span>Neues Bayerisches Radgesetz – 1.500 km neue Radwege bis 2030</li>
+          <li><span class="check">✓</span>Kein generelles Verbrenner-Verbot der EU – Technologieoffenheit</li>
+          <li><span class="check">✓</span>Bayern behält die IAA – Denkfabrik für Mobilität der Zukunft</li>
+          <li><span class="check">✓</span>2.000 neue Klimabusse in fünf Jahren fördern</li>
+          <li><span class="check">✓</span>Schüler, Studenten und Azubis: vergünstigtes Deutschlandticket</li>
+          <li><span class="check">✓</span>Güter von der Straße auf die Schiene verlagern</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GESUNDHEIT -->
+<div class="detail-section" id="gesundheit">
+  <div class="container">
+    <div class="detail-grid">
+      <div class="detail-content reveal-left">
+        <span class="section-eyebrow">Thema 14</span>
+        <h2>Beste Gesundheit und Pflege für alle.</h2>
+        <p>In Bayern lebt man länger und gesünder. Beste medizinische Versorgung darf niemals ein Privileg der Ballungsräume werden. Die Pflege ist eine Frage von Respekt und Würde.</p>
+        <ul class="goals-list">
+          <li><span class="check">✓</span>Krankenhausinvestitionen auf 1 Mrd. Euro/Jahr steigern (+ 50 % ggü. heute)</li>
+          <li><span class="check">✓</span>100 Mio. Euro für Notfallversorgung in 5 Jahren</li>
+          <li><span class="check">✓</span>Fast 3.000 neue Medizinstudienplätze schaffen</li>
+          <li><span class="check">✓</span>8.000 neue Pflegeplätze bis 2028 fördern</li>
+          <li><span class="check">✓</span>Landarztquote und Förderprogramme für ländliche Praxen</li>
+          <li><span class="check">✓</span>Schnellverfahren für ausländische Pflegekräfte</li>
+          <li><span class="check">✓</span>Bayerisches Landespflegegeld fortführen – 400.000+ Pflegebedürftige</li>
+          <li><span class="check">✓</span>Geburtshilfe: 28 Mio. Euro Förderung jährlich für Hebammen</li>
+        </ul>
+      </div>
+      <div class="reveal-right">
+        <div class="infographic">
+          <h3 style="margin-bottom:24px;font-size:1.1rem;color:var(--blue)">Gesundheit in Zahlen</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px">
+            <div style="text-align:center;padding:20px;background:rgba(220,50,100,0.07);border-radius:12px">
+              <div style="font-size:1.9rem;font-weight:900;color:#c0304a;line-height:1">3 Mrd.</div>
+              <div style="font-size:0.75rem;color:var(--grey-dark);margin-top:6px;line-height:1.4">Euro Krankenhausinvestitionen seit 2018</div>
+            </div>
+            <div style="text-align:center;padding:20px;background:rgba(0,85,200,0.07);border-radius:12px">
+              <div style="font-size:1.9rem;font-weight:900;color:var(--blue);line-height:1">2 Mrd.</div>
+              <div style="font-size:0.75rem;color:var(--grey-dark);margin-top:6px;line-height:1.4">Euro Pflegegeld bereits ausgezahlt</div>
+            </div>
+            <div style="text-align:center;padding:20px;background:rgba(46,158,94,0.08);border-radius:12px">
+              <div style="font-size:1.9rem;font-weight:900;color:var(--green);line-height:1">3.000</div>
+              <div style="font-size:0.75rem;color:var(--grey-dark);margin-top:6px;line-height:1.4">Neue Medizinstudienplätze geplant</div>
+            </div>
+            <div style="text-align:center;padding:20px;background:rgba(232,160,32,0.1);border-radius:12px">
+              <div style="font-size:1.9rem;font-weight:900;color:#b07000;line-height:1">8.000</div>
+              <div style="font-size:0.75rem;color:var(--grey-dark);margin-top:6px;line-height:1.4">Neue Pflegeplätze bis 2028</div>
+            </div>
+          </div>
+          <div style="padding:16px;background:rgba(0,85,200,0.05);border-radius:12px;font-size:0.85rem;color:var(--grey-dark);line-height:1.6">
+            🏥 <strong style="color:var(--text)">Pflegegeld nur in Bayern:</strong> Das Landespflegegeld gibt es als einziges Bundesland in Bayern – aktuell profitieren über 400.000 Pflegebedürftige.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="container">
+    <div class="reveal">
+      <h2>Für ein starkes und stabiles Bayern.</h2>
+      <p>Die CSU steht für Wohlstand, Sicherheit, Familie und Heimat – mit einem klaren Plan für die nächsten fünf Jahre.</p>
+      <a href="https://www.csu.de" class="btn btn-primary" target="_blank" rel="noopener">Mehr zur CSU</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>CSU Regierungsprogramm 2023–2028</strong><br>
+  „Für ein starkes und stabiles Bayern – In Bayern lebt es sich einfach besser"<br>
+  <span style="font-size:0.78rem;opacity:0.6;margin-top:8px;display:block">Quelle: Beschlussversion des CSU-Regierungsprogramms zur Landtagswahl am 8. Oktober 2023 · Interaktive Aufbereitung · csu.leoritzenthaler.com</span>
+</footer>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+  // Modal data
+  const modals = {
+    wirtschaft: {
+      title: '💼 Wohlstand schützen & Mitte entlasten',
+      content: `
+        <p>Bayern ist eine der wirtschaftsstärksten Regionen Europas mit Spitzenrating AAA/A-1+ und der höchsten Investitionsquote aller Bundesländer.</p>
+        <ul>
+          <li>Steuererhöhungen ablehnen – Entlastungen für Bürger und Unternehmen</li>
+          <li>Solidaritätszuschlag und kalte Progression vollständig abschaffen</li>
+          <li>Stromsteuer auf europäisches Mindestmaß senken (0,1 Ct/kWh Haushalte)</li>
+          <li>Mehrwertsteuer auf alle Lebensmittel und Getränke senken</li>
+          <li>Pendlerpauschale ab 1. Kilometer auf 38 Cent erhöhen</li>
+          <li>2-jähriges Moratorium für Verwaltungsvorschriften im Bund und Bayern</li>
+          <li>Kostenfreie Meisterausbildung – Meister und Master gleichwertig</li>
+          <li>Erbschaftsteuer: höhere Freibeträge, niedrigere Sätze, Regionalisierung</li>
+          <li>Dauerhaft abgesenkte Mehrwertsteuer in der Gastronomie</li>
+          <li>Länderfinanzausgleich gerechter gestalten – 100 Mrd. Euro eingezahlt</li>
+        </ul>
+      `
+    },
+    soziales: {
+      title: '🤝 Soziale Sicherheit für Alle',
+      content: `
+        <p>Bayern hat die niedrigste Arbeitslosigkeit und so viele Menschen in Lohn und Brot wie nie zuvor. In Bayern sind weniger Menschen auf staatliche Hilfe angewiesen als in jedem anderen Bundesland.</p>
+        <ul>
+          <li>Vollbeschäftigung für ganz Bayern anstreben</li>
+          <li>Leistungsfeindliches Bürgergeld der Ampel ablehnen – Arbeit muss sich lohnen</li>
+          <li>Volle Mütterrente: 3 Erziehungsjahre auch für vor 1992 geborene Kinder</li>
+          <li>Seniorenmitwirkung auf kommunaler und Landesebene stärken</li>
+          <li>Mehrgenerationenhäuser und generationsübergreifende Wohnprojekte fördern</li>
+          <li>Bayerns soziales Netz stärken – Tafeln, Armutsberatung, Beratungsstellen</li>
+          <li>Schulische Inklusion und Förderschulen weiterentwickeln</li>
+        </ul>
+      `
+    },
+    energie: {
+      title: '⚡ Bayerns Energie sichern',
+      content: `
+        <p>Bayern ist Vorreiter bei Erneuerbaren Energien. 2022 stemmte der Freistaat fast 25 % des gesamtdeutschen Zubaus und bleibt Spitzenreiter bei PV, Wasserkraft, Biomasse und Geothermie.</p>
+        <ul>
+          <li>Erneuerbare Energien bis 2030 verdoppeln</li>
+          <li>Photovoltaik bis 2030 verdreifachen</li>
+          <li>1.000 neue Windenergieanlagen bis 2030 – neue Gesellschaft „Bayernwind"</li>
+          <li>Wasserkraftanteil auf 25 % der Bruttostromerzeugung steigern</li>
+          <li>700 Mio. Euro Investitionen in Wasserstoff – 50 Elektrolyseure</li>
+          <li>Bayern zum Wasserstoffland Nr. 1 und Drehkreuz in Europa</li>
+          <li>HyPipe Bavaria-Netz: Industriezentren bis 2030 anschließen</li>
+          <li>Bayerische Kernkraftwerke weiterbetreiben</li>
+          <li>Forschungsreaktor und Energieforschungs-Campus gründen</li>
+          <li>Bioenergie bis 2028 um 15 % steigern</li>
+          <li>25 % des Wärmebedarfs bis 2050 aus Geothermie decken</li>
+        </ul>
+      `
+    },
+    sicherheit: {
+      title: '🛡️ Sicherheit & Rechtsstaat',
+      content: `
+        <p>Bayern hat die niedrigste Kriminalitätsbelastung und höchste Aufklärungsquote aller Bundesländer. 45.000 Polizistinnen und Polizisten leisten täglich einen unverzichtbaren Dienst.</p>
+        <ul>
+          <li>1.000 neue Stellen bei Polizeiinspektionen bis 2028</li>
+          <li>Voll digitalisierter Streifenwagen – Bürokratie reduzieren</li>
+          <li>KI in der Polizeiarbeit sinnvoll einsetzen</li>
+          <li>Deutschlands erster Hate-Speech-Beauftragter weiter stärken</li>
+          <li>Aufbewahrungsfristen bei Sexualstraftaten auf 10 Jahre verdoppeln</li>
+          <li>Kampf gegen Kindesmissbrauch – Sonderstaatsanwaltschaft stärken</li>
+          <li>Stellenaufbau bei der Justiz fortsetzen</li>
+          <li>Elektronische Akte flächendeckend in der Justiz einführen</li>
+          <li>Grenzpolizei auf 1.000 Stellen ausbauen</li>
+          <li>Bundeswehr und Katastrophenschutz stärken</li>
+        </ul>
+      `
+    },
+    migration: {
+      title: '🌍 Migration & Integration',
+      content: `
+        <p>Bayern ist Integrationsland Nr. 1 in Deutschland mit der niedrigsten Ausländerarbeitslosigkeit und höchsten Erwerbstätigenquote bei Menschen mit Migrationshintergrund.</p>
+        <ul>
+          <li>Reguläre Migration steuern, irreguläre Migration verhindern</li>
+          <li>Integration fordern und fördern: Sprache, Bildung, Arbeit</li>
+          <li>Kommunen bei Migration mit mehr Geld und Unterstützung stärken</li>
+          <li>Wer Arbeit hat oder Ausbildung macht, soll bleiben können</li>
+          <li>Schnellere Abschiebung krimineller Ausländer</li>
+          <li>Neue Büros für Arbeitsmigration (Albanien, Bosnien-Herzegowina)</li>
+          <li>Staatsbürgerschaft nicht verschenken – klares Bekenntnis zu Werten</li>
+          <li>Grenzpolizei auf 1.000 Stellen ausbauen</li>
+        </ul>
+      `
+    },
+    familien: {
+      title: '👨‍👩‍👧‍👦 Familien – Bayern Nr. 1',
+      content: `
+        <p>Bayern investiert über 4 Mrd. Euro/Jahr in Familienpolitik. In keinem anderen Bundesland leben so wenige Kinder in Armut. Seit 2018 wurden 3,5 Mrd. Euro Familiengeld für über 800.000 Kinder ausgezahlt.</p>
+        <ul>
+          <li>3.000 € Familiengeld/Jahr pro Kind (2.–3. Lebensjahr)</li>
+          <li>3.600 € Familiengeld/Jahr ab dem dritten Kind</li>
+          <li>180.000 neue Betreuungsplätze bis 2028 (50.000 + 130.000)</li>
+          <li>Familiengeld unabhängig vom Kita-Besuch fortführen</li>
+          <li>200 neue Studienplätze für Soziale Arbeit und Kindheitspädagogik</li>
+          <li>Sozialberufe vom Schulgeld befreien</li>
+          <li>Home-Office und mobiles Arbeiten für Vereinbarkeit fördern</li>
+          <li>Elterngeld inflationsanpassen und vereinfachen</li>
+        </ul>
+      `
+    },
+    bildung: {
+      title: '📚 Bildung – Chancen für alle',
+      content: `
+        <p>Bayern hat das Bildungssystem mit der größten Durchlässigkeit und besten Ergebnissen in Deutschland – mit dem niedrigsten Anteil an Schulabbrechern.</p>
+        <ul>
+          <li>8.000 neue Stellen für Lehrkräfte, Verwaltung und Sozialpädagogen</li>
+          <li>Tablets für alle Schülerinnen und Schüler bis 2028</li>
+          <li>71.000 digitale Klassenzimmer ausbauen – Bayern-Cloud</li>
+          <li>50 € Seepferdchen-Gutschein – jedes Kind lernt schwimmen</li>
+          <li>Deutsch vor der Einschulung: verbindliche Sprachfeststellungstests</li>
+          <li>Grundschulgarantie für alle Teile Bayerns</li>
+          <li>A13 für Grund- und Mittelschullehrer bis 2027</li>
+          <li>Kostenfreie Meisterausbildung – Meister = Master</li>
+        </ul>
+      `
+    },
+    hightech: {
+      title: '🚀 Heimat & Hightech',
+      content: `
+        <p>Bayern ist das Silicon Valley Europas. Die Hightech Agenda ist das größte Innovationsprogramm in der Geschichte des Freistaats mit 5 Mrd. Euro bis 2027.</p>
+        <ul>
+          <li>5 Mrd. Euro Hightech Agenda bis 2027</li>
+          <li>1.000 neue Professuren an bayerischen Hochschulen</li>
+          <li>13.000+ neue Studienplätze in Schlüsseltechnologien</li>
+          <li>600 Mio. Euro für KI – meiste KI-Investitionen in Deutschland</li>
+          <li>8 Supercomputer in Bayern – so viele wie Südkorea</li>
+          <li>Munich Quantum Valley: Quantencomputertechnologie für Industrie und Forschung</li>
+          <li>Life Science Campus in Martinsried: 500 Mio. Euro</li>
+          <li>„Bayerisches Houston": Oberpfaffenhofen für Mond-Missionen</li>
+          <li>20 Spitzenforschungsinstitute im ganzen Freistaat</li>
+          <li>Technologietransferzentrum in jedem Landkreis bis 2028</li>
+        </ul>
+      `
+    },
+    landwirtschaft: {
+      title: '🌾 Starke Landwirtschaft',
+      content: `
+        <p>Die Landwirtschaft gehört fest zu Bayern. Unsere Landwirte sind die wichtigsten Umweltschützer und Landschaftspfleger. Seit 2018 haben landwirtschaftliche Betriebe fast 10 Mrd. Euro Fördermittel erhalten.</p>
+        <ul>
+          <li>Familienbetriebe stärken – keine anonymen Agrarfabriken</li>
+          <li>Mehrwertsteuer für regionale Lebensmittel senken</li>
+          <li>Bürokratieabbau und Belastungsmoratorium für Landwirte</li>
+          <li>Steuerbefreiung von Agrardiesel und Landmaschinen</li>
+          <li>Tierwohl stärken – artgerechte Tierhaltung fördern</li>
+          <li>Praxistaugliche Düngeverordnung</li>
+          <li>Pauschale Flächenstilllegungen verhindern</li>
+          <li>Mindestens 50 % regionale Produkte in Kitas und Schulen</li>
+          <li>Wolfsentnahme dauerhaft ermöglichen – Schutz der Weidehaltung</li>
+        </ul>
+      `
+    },
+    umwelt: {
+      title: '🌿 Umwelt & Klima schützen',
+      content: `
+        <p>Als einziges Bundesland investieren wir 1 Mrd. Euro pro Jahr in Klimaschutz – insgesamt 22 Mrd. Euro bis 2040. Bayern soll 2040 klimaneutral sein.</p>
+        <ul>
+          <li>Bayern bis 2040 klimaneutral machen</li>
+          <li>22 Mrd. Euro Klimainvestitionen bis 2040</li>
+          <li>55.000 Hektar Moore renaturieren</li>
+          <li>Mischwald klimaresistenter machen – Bayern Waldland Nr. 1</li>
+          <li>Kommunal vor Kommerz beim Wasser</li>
+          <li>Hochwasserschutz weiterentwickeln und Sturzflutschutz stärken</li>
+          <li>Artenschutz ausbauen – Naturparke und Biosphärenreservate stärken</li>
+          <li>Streuobstpakt und Vertragsnaturschutzprogramm fortführen</li>
+        </ul>
+      `
+    },
+    laendlich: {
+      title: '🏘️ Ländlicher Raum',
+      content: `
+        <p>Der ländliche Raum ist Zukunftsraum. Geburtenzahlen, Zuzug und Bevölkerung im ländlichen Raum steigen. Der kommunale Finanzausgleich erreicht 2023 erstmals über 20 Mrd. Euro.</p>
+        <ul>
+          <li>Fast 100 Verlagerungsprojekte – 5.000+ Arbeitsplätze in ländlichen Raum</li>
+          <li>1.330 neue Studienplätze im ländlichen Raum bis 2030</li>
+          <li>Bayerische Gigabitrichtlinie: 99 % der Haushalte mit schnellem Internet</li>
+          <li>Kommunalfinanzausgleich auf Rekordniveau halten</li>
+          <li>Heimatstrategie „Offensive.Heimat.Bayern" fortführen</li>
+          <li>Bayerisch-tschechischen Grenzraum stärken</li>
+        </ul>
+      `
+    },
+    mobilitaet: {
+      title: '🚗 Mobilität in Stadt und Land',
+      content: `
+        <p>Mobilität ist ein Grundbedürfnis und für das Flächenland Bayern zentral. Bayern spielt Mobilitätsarten nicht gegeneinander aus, sondern baut sie technologieoffen aus.</p>
+        <ul>
+          <li>1.500 km neue Radwege bis 2030 – neues Bayerisches Radgesetz</li>
+          <li>Fahrradmitnahme im S-Bahn- und Regionalverkehr für 1 Euro</li>
+          <li>Kein generelles Verbrenner-Verbot der EU ab 2035</li>
+          <li>IAA in München behalten</li>
+          <li>2.000 neue Klimabusse in 5 Jahren fördern</li>
+          <li>Vergünstigtes Deutschlandticket für Schüler, Studenten, Azubis</li>
+          <li>2. Stammstrecke München als Hauptschlagader des ÖPNV</li>
+          <li>ICE-Anschluss für den Flughafen München</li>
+          <li>Güterverkehr von der Straße auf die Schiene verlagern</li>
+        </ul>
+      `
+    },
+    wohnen: {
+      title: '🏠 Bezahlbarer Wohnraum',
+      content: `
+        <p>Eigenheim statt Plattenbau: Bayern hat die niedrigste Grunderwerbsteuer aller Bundesländer (3,5 %) und bleibt das Gegenmodell zum Bund.</p>
+        <ul>
+          <li>3,5 % Grunderwerbsteuer – niedrigster Satz aller Bundesländer</li>
+          <li>Freibetrag für Ersterwerb von selbstgenutztem Wohnraum</li>
+          <li>Bayern-Darlehen für Familien mit Zinsverbilligung</li>
+          <li>Drei Wohnungsbaugesellschaften zu einer zusammenführen</li>
+          <li>Wohnbaumilliarde auf Rekordniveau verstetigen</li>
+          <li>Digitalen Bauantrag zum Standard machen</li>
+          <li>Büros in Wohnraum umnutzen erleichtern</li>
+          <li>Mitarbeiterwohnungen steuerlich begünstigen</li>
+          <li>Bis 2025: keine Mieterhöhungen bei staatlichen Wohnungen</li>
+        </ul>
+      `
+    },
+    gesundheit: {
+      title: '🏥 Gesundheit & Pflege',
+      content: `
+        <p>In Bayern lebt man länger und gesünder. Beste medizinische Versorgung ist kein Privileg der Ballungsräume. Bayern investiert von allen Flächenländern am meisten in seine Krankenhäuser.</p>
+        <ul>
+          <li>Krankenhausinvestitionen auf 1 Mrd. Euro/Jahr steigern</li>
+          <li>100 Mio. Euro für Notfallversorgung in 5 Jahren</li>
+          <li>Fast 3.000 neue Medizinstudienplätze</li>
+          <li>8.000 neue Pflegeplätze bis 2028</li>
+          <li>Landarztquote und Förderprogramme für ländliche Praxen</li>
+          <li>Hebammenbonus und 28 Mio. Euro Förderung/Jahr</li>
+          <li>Schnellverfahren für ausländische Pflegekräfte</li>
+          <li>Bayerisches Landespflegegeld fortführen – 400.000+ Pflegebedürftige</li>
+          <li>Cannabis-Legalisierung verhindern – Bayern keine Testregion</li>
+        </ul>
+      `
+    },
+    kultur: {
+      title: '🎭 Zusammenhalt & Kultur',
+      content: `
+        <p>Unsere bayerische Identität ist unser Auftrag. Fast jeder zweite Bayer engagiert sich im Ehrenamt. Wir sind die Partei der Liberalitas Bavariae und der Freiheit.</p>
+        <ul>
+          <li>Bayerische Dialektvielfalt und Kulturerbe erhalten</li>
+          <li>Schutz christlicher Feiertage</li>
+          <li>Heimat-, Trachten- und Musikvereine unterstützen</li>
+          <li>Rundfunkgebühren stabil halten und einfrieren</li>
+          <li>Ehrenamt von Bürokratie entlasten</li>
+          <li>1. Dezember als Bayerischen Verfassungstag stärken</li>
+          <li>Jüdisches Leben in Bayern erhalten, fördern und schützen</li>
+          <li>Sudetendeutsche und Heimatvertriebene unterstützen</li>
+          <li>Gebirgsschützenarchiv aufbauen</li>
+          <li>Bayern ist Freistaat – kein Verbotsstaat</li>
+        </ul>
+      `
+    }
+  };
+
+  function openModal(key) {
+    const data = modals[key];
+    if (!data) return;
+    document.getElementById('modalContent').innerHTML = `<h3>${data.title}</h3>${data.content}`;
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Intersection Observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Trigger progress bars
+        entry.target.querySelectorAll('.progress-fill[data-width]').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        // Trigger count-up
+        entry.target.querySelectorAll('.count-up[data-target]').forEach(el => {
+          animateCount(el);
+        });
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+  // Also trigger progress bars in already-visible sections on scroll
+  const progressObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.width = entry.target.dataset.width + '%';
+        progressObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.progress-fill[data-width]').forEach(el => progressObserver.observe(el));
+
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+    function update(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = prefix + Math.round(ease * target) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  // Trigger count-ups in stats bar on scroll
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.count-up').forEach(animateCount);
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.stats-bar').forEach(el => statsObserver.observe(el));
+</script>
+</body>
+</html>
