@@ -40,10 +40,10 @@
   }
   .nav-logo { color: white; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.5px; text-decoration: none; }
   .nav-logo span { color: var(--gold); }
-  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links { display: flex; gap: 2px; list-style: none; }
   .nav-links a {
-    color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.82rem;
-    padding: 6px 10px; border-radius: 6px; transition: var(--transition);
+    color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.74rem;
+    padding: 5px 7px; border-radius: 6px; transition: var(--transition);
     white-space: nowrap;
   }
   .nav-links a:hover { color: white; background: rgba(255,255,255,0.12); }
@@ -367,14 +367,20 @@
   <a class="nav-logo" href="#">CSU <span>2023–28</span></a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#wirtschaft">Wirtschaft</a></li>
+    <li><a href="#soziales">Soziales</a></li>
     <li><a href="#energie">Energie</a></li>
     <li><a href="#sicherheit">Sicherheit</a></li>
+    <li><a href="#migration">Migration</a></li>
     <li><a href="#familien">Familien</a></li>
     <li><a href="#bildung">Bildung</a></li>
     <li><a href="#hightech">Hightech</a></li>
+    <li><a href="#landwirtschaft">Landwirtschaft</a></li>
     <li><a href="#umwelt">Umwelt</a></li>
+    <li><a href="#laendlich">Ländl. Raum</a></li>
     <li><a href="#mobilitaet">Mobilität</a></li>
+    <li><a href="#wohnen">Wohnen</a></li>
     <li><a href="#gesundheit">Gesundheit</a></li>
+    <li><a href="#kultur">Kultur</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -628,6 +634,60 @@
   </div>
 </div>
 
+<!-- SOZIALES -->
+<div class="detail-section" id="soziales" style="background:var(--grey)">
+  <div class="container">
+    <div class="detail-grid reverse">
+      <div class="reveal-right">
+        <div class="infographic">
+          <h3 style="margin-bottom:24px;font-size:1.1rem;color:var(--blue)">Soziale Stärke Bayerns</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px">
+            <div style="text-align:center;padding:24px 16px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="font-size:2rem;font-weight:900;color:var(--blue);line-height:1">Nr. 1</div>
+              <div style="font-size:0.78rem;color:var(--grey-dark);margin-top:8px;line-height:1.4">Niedrigste Arbeitslosigkeit aller Bundesländer</div>
+            </div>
+            <div style="text-align:center;padding:24px 16px;background:rgba(46,158,94,0.08);border-radius:12px">
+              <div style="font-size:2rem;font-weight:900;color:var(--green);line-height:1">Min.</div>
+              <div style="font-size:0.78rem;color:var(--grey-dark);margin-top:8px;line-height:1.4">Wenigste Kinder in Armut – bundesweit</div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header"><span class="progress-label">Beschäftigung im Freistaat</span><span class="progress-value">Rekordniveau</span></div>
+            <div class="progress-track"><div class="progress-fill green" data-width="97"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header"><span class="progress-label">Soziale Absicherung (Ländervergleich)</span><span class="progress-value">Nr. 1</span></div>
+            <div class="progress-track"><div class="progress-fill" data-width="100"></div></div>
+          </div>
+          <div style="margin-top:20px;padding:16px;background:rgba(46,158,94,0.07);border-radius:12px;font-size:0.85rem;color:var(--grey-dark);line-height:1.6">
+            🤝 <strong style="color:var(--text)">Gute Arbeit ist beste Absicherung:</strong> In Bayern sind weniger Menschen auf staatliche Hilfe angewiesen als in jedem anderen Bundesland.
+          </div>
+        </div>
+      </div>
+      <div class="detail-content reveal-left">
+        <span class="section-eyebrow">Thema 2</span>
+        <h2>Soziale Sicherheit und Teilhabe für alle.</h2>
+        <p>Bayern hat die niedrigste Arbeitslosigkeit und so viele Menschen in Lohn und Brot wie nie zuvor. In Bayern sind weniger Menschen auf staatliche Hilfe angewiesen als in jedem anderen Bundesland. Die CSU steht für eine soziale Marktwirtschaft, die alle mitnimmt.</p>
+        <ul class="goals-list">
+          <li><span class="check">✓</span>Vollbeschäftigung für ganz Bayern – Arbeit muss sich lohnen</li>
+          <li><span class="check">✓</span>Leistungsfeindliches Bürgergeld der Ampel ablehnen</li>
+          <li><span class="check">✓</span>Volle Mütterrente: 3 Erziehungsjahre auch für vor 1992 geborene Kinder</li>
+          <li><span class="check">✓</span>Seniorenmitwirkung auf kommunaler und Landesebene stärken</li>
+          <li><span class="check">✓</span>Mehrgenerationenhäuser und generationsübergreifende Wohnprojekte fördern</li>
+          <li><span class="check">✓</span>Bayerns soziales Netz stärken – Tafeln, Armutsberatung, Beratungsstellen</li>
+          <li><span class="check">✓</span>Schulische Inklusion und Förderschulen weiterentwickeln</li>
+        </ul>
+        <div class="tag-cloud">
+          <span class="tag green">Vollbeschäftigung</span>
+          <span class="tag">Volle Mütterrente</span>
+          <span class="tag gold">Soziales Netz</span>
+          <span class="tag">Inklusion</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ENERGIE -->
 <div class="detail-section" id="energie" style="background:var(--grey)">
   <div class="container">
@@ -681,7 +741,7 @@
 </div>
 
 <!-- SICHERHEIT -->
-<div class="detail-section" id="sicherheit">
+<div class="detail-section" id="sicherheit" style="background:var(--grey)">
   <div class="container">
     <div class="detail-grid">
       <div class="detail-content reveal-left">
@@ -731,6 +791,82 @@
               <div class="timeline-dot"></div>
               <div class="timeline-year">Dauerhaft</div>
               <div class="timeline-text">Null Toleranz gegen Extremismus – von links, rechts und religiös motiviert</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MIGRATION -->
+<div class="detail-section" id="migration" style="background:var(--grey)">
+  <div class="container">
+    <div class="detail-grid">
+      <div class="detail-content reveal-left">
+        <span class="section-eyebrow">Thema 5</span>
+        <h2>Migration steuern, Integration fördern.</h2>
+        <p>Bayern ist Integrationsland Nr. 1 in Deutschland – mit der niedrigsten Ausländerarbeitslosigkeit und höchsten Erwerbstätigenquote bei Menschen mit Migrationshintergrund. Humanität und Ordnung gehören zusammen.</p>
+        <ul class="goals-list">
+          <li><span class="check">✓</span>Reguläre Migration steuern, irreguläre Migration verhindern</li>
+          <li><span class="check">✓</span>Integration fordern und fördern: Sprache, Bildung, Arbeit</li>
+          <li><span class="check">✓</span>Kommunen bei Migration mit mehr Geld und Unterstützung stärken</li>
+          <li><span class="check">✓</span>Wer Arbeit hat oder Ausbildung macht, soll bleiben können</li>
+          <li><span class="check">✓</span>Schnellere Abschiebung krimineller Ausländer</li>
+          <li><span class="check">✓</span>Neue Büros für Arbeitsmigration (Albanien, Bosnien-Herzegowina)</li>
+          <li><span class="check">✓</span>Staatsbürgerschaft nicht verschenken – klares Bekenntnis zu deutschen Werten</li>
+          <li><span class="check">✓</span>Grenzpolizei auf 1.000 Stellen ausbauen</li>
+        </ul>
+        <div class="tag-cloud">
+          <span class="tag">Integrationsland Nr. 1</span>
+          <span class="tag gold">Humanität &amp; Ordnung</span>
+          <span class="tag">Grenzpolizei stärken</span>
+          <span class="tag green">Arbeit schafft Heimat</span>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="infographic">
+          <h3 style="margin-bottom:24px;font-size:1.1rem;color:var(--blue)">Integration in Bayern</h3>
+          <div style="display:grid;gap:16px">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">🏆</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Integrationsland Nr. 1</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">Niedrigste Ausländerarbeitslosigkeit deutschlandweit</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.3rem;color:var(--blue)">Bayern</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(46,158,94,0.08);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">💼</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Höchste Erwerbstätigenquote</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">Menschen mit Migrationshintergrund</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.3rem;color:var(--green)">Nr. 1</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">🌍</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Neue Arbeitsmigrationsbüros</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">Albanien, Bosnien-Herzegowina und weitere</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.1rem;color:var(--blue)">Neu</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">🚔</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Grenzpolizei stärken</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">Ausbau auf 1.000 Stellen bis 2028</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.3rem;color:var(--blue)">1.000</div>
             </div>
           </div>
         </div>
@@ -903,8 +1039,60 @@
   </div>
 </div>
 
+<!-- LANDWIRTSCHAFT -->
+<div class="detail-section" id="landwirtschaft" style="background:var(--grey)">
+  <div class="container">
+    <div class="detail-grid reverse">
+      <div class="reveal-right">
+        <div class="infographic">
+          <h3 style="margin-bottom:24px;font-size:1.1rem;color:var(--blue)">Landwirtschaft in Bayern</h3>
+          <div class="number-cards" style="margin-bottom:24px">
+            <div class="number-card">
+              <div class="big" style="font-size:1.4rem;color:var(--green)">10 Mrd.</div>
+              <div class="small">Euro Fördermittel seit 2018 – Hälfte aus Landesmitteln</div>
+            </div>
+            <div class="number-card">
+              <div class="big" style="font-size:1.3rem;color:var(--blue)">100.000+</div>
+              <div class="small">Landwirtschaftliche Betriebe in Bayern</div>
+            </div>
+            <div class="number-card">
+              <div class="big" style="color:var(--gold)">≥ 50 %</div>
+              <div class="small">Regionale Produkte in Kitas und Schulen – Ziel bis 2028</div>
+            </div>
+            <div class="number-card">
+              <div class="big" style="color:var(--green)">Nr. 1</div>
+              <div class="small">Stärkstes Agrarland Deutschlands</div>
+            </div>
+          </div>
+          <div class="tag-cloud">
+            <span class="tag green">Tierwohl</span>
+            <span class="tag">Familienbetriebe</span>
+            <span class="tag gold">Regional &amp; Saisonal</span>
+            <span class="tag">Bürokratieabbau</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-content reveal-left">
+        <span class="section-eyebrow">Thema 9</span>
+        <h2>Starke Landwirtschaft, gesunde Lebensmittel.</h2>
+        <p>Die Landwirtschaft gehört fest zu Bayern. Unsere Landwirte sind die wichtigsten Umweltschützer und Landschaftspfleger des Freistaats. Seit 2018 haben landwirtschaftliche Betriebe fast 10 Mrd. Euro Fördermittel erhalten.</p>
+        <ul class="goals-list">
+          <li><span class="check">✓</span>Familienbetriebe stärken – keine anonymen Agrarfabriken</li>
+          <li><span class="check">✓</span>Mehrwertsteuer für regionale Lebensmittel dauerhaft senken</li>
+          <li><span class="check">✓</span>Bürokratieabbau und Belastungsmoratorium für Landwirte</li>
+          <li><span class="check">✓</span>Steuerbefreiung von Agrardiesel und Landmaschinen</li>
+          <li><span class="check">✓</span>Tierwohl stärken – artgerechte Tierhaltung und Weidehaltung fördern</li>
+          <li><span class="check">✓</span>Praxistaugliche Düngeverordnung – keine Überregulierung</li>
+          <li><span class="check">✓</span>Mindestens 50 % regionale Produkte in Kitas und Schulen bis 2028</li>
+          <li><span class="check">✓</span>Wolfsentnahme dauerhaft ermöglichen – Schutz der Alpweiden</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- UMWELT -->
-<div class="detail-section" id="umwelt">
+<div class="detail-section" id="umwelt" style="background:var(--grey)">
   <div class="container">
     <div class="detail-grid">
       <div class="detail-content reveal-left">
@@ -972,6 +1160,80 @@
   </div>
 </div>
 
+<!-- LAENDLICH -->
+<div class="detail-section" id="laendlich" style="background:var(--grey)">
+  <div class="container">
+    <div class="detail-grid">
+      <div class="detail-content reveal-left">
+        <span class="section-eyebrow">Thema 11</span>
+        <h2>Der ländliche Raum ist Zukunftsraum.</h2>
+        <p>Geburtenzahlen, Zuzug und Bevölkerung im ländlichen Raum steigen. Der kommunale Finanzausgleich erreicht 2023 erstmals über 20 Mrd. Euro. Bayern bekennt sich zu gleichwertigen Lebensverhältnissen in Stadt und Land.</p>
+        <ul class="goals-list">
+          <li><span class="check">✓</span>Fast 100 Verlagerungsprojekte – 5.000+ Arbeitsplätze in den ländlichen Raum</li>
+          <li><span class="check">✓</span>1.330 neue Studienplätze im ländlichen Raum bis 2030</li>
+          <li><span class="check">✓</span>Bayerische Gigabitrichtlinie: 99 % der Haushalte mit schnellem Internet</li>
+          <li><span class="check">✓</span>Kommunalfinanzausgleich auf Rekordniveau halten – über 20 Mrd. Euro</li>
+          <li><span class="check">✓</span>Heimatstrategie „Offensive.Heimat.Bayern" fortführen und weiterentwickeln</li>
+          <li><span class="check">✓</span>Bayerisch-tschechischen Grenzraum stärken</li>
+        </ul>
+        <div class="tag-cloud">
+          <span class="tag">Gigabit für alle</span>
+          <span class="tag gold">Kommunen stärken</span>
+          <span class="tag green">Gleiche Lebensverhältnisse</span>
+          <span class="tag">Heimatstrategie</span>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="infographic">
+          <h3 style="margin-bottom:24px;font-size:1.1rem;color:var(--blue)">Ländlicher Raum – Zahlen</h3>
+          <div style="display:grid;gap:14px">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">💰</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Kommunalfinanzausgleich 2023</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">Erstmals über 20 Mrd. Euro – jeder 3. Staatshaushaltseuro</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.1rem;color:var(--blue)">20 Mrd.</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(46,158,94,0.08);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">🏢</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Verlagerungsprojekte</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">Fast 100 Projekte – 5.000+ neue Arbeitsplätze</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.1rem;color:var(--green)">5.000+</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">🌐</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Gigabitversorgung bis 2030</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">99 % aller bayerischen Haushalte mit schnellem Internet</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.1rem;color:var(--blue)">99 %</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">🎓</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Neue Studienplätze</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">1.330 neue Studienplätze im ländlichen Raum bis 2030</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.1rem;color:var(--blue)">1.330</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- MOBILITAET -->
 <div class="detail-section" id="mobilitaet" style="background:var(--grey)">
   <div class="container">
@@ -1020,8 +1282,84 @@
   </div>
 </div>
 
+<!-- WOHNEN -->
+<div class="detail-section" id="wohnen" style="background:var(--grey)">
+  <div class="container">
+    <div class="detail-grid reverse">
+      <div class="reveal-right">
+        <div class="infographic">
+          <h3 style="margin-bottom:24px;font-size:1.1rem;color:var(--blue)">Wohnraum in Bayern</h3>
+          <div style="display:grid;gap:16px">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(232,160,32,0.1);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">🏡</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Grunderwerbsteuer</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">Niedrigster Satz aller Bundesländer – nur Bayern bei 3,5 %</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.3rem;color:#b07000">3,5 %</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">💶</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Wohnbaumilliarde</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">Rekordförderung für sozialen Wohnungsbau bis 2030</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.1rem;color:var(--blue)">1 Mrd.</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(46,158,94,0.08);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">🔑</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Bayern-Darlehen</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">Zinsverbilligung und staatliche Bürgschaft für Familien</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.1rem;color:var(--green)">Neu</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:18px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:1.8rem">🏗️</span>
+                <div>
+                  <div style="font-weight:800;font-size:0.95rem">Digitaler Bauantrag</div>
+                  <div style="font-size:0.78rem;color:var(--grey-dark)">Bürokratie abbauen – schneller zum Eigenheim</div>
+                </div>
+              </div>
+              <div style="font-weight:900;font-size:1.1rem;color:var(--blue)">2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-content reveal-left">
+        <span class="section-eyebrow">Thema 13</span>
+        <h2>Eigenheim statt Plattenbau.</h2>
+        <p>Bayern hat die niedrigste Grunderwerbsteuer aller Bundesländer (3,5 %) und ist damit das Gegenmodell zum Bund. Bezahlbares Wohnen in Eigentum und Miete ist das Versprechen der sozialen Marktwirtschaft.</p>
+        <ul class="goals-list">
+          <li><span class="check">✓</span>3,5 % Grunderwerbsteuer – niedrigster Satz aller Bundesländer beibehalten</li>
+          <li><span class="check">✓</span>Freibetrag für Ersterwerb von selbstgenutztem Wohnraum einführen</li>
+          <li><span class="check">✓</span>Bayern-Darlehen für Familien mit Zinsverbilligung und staatlichen Bürgschaften</li>
+          <li><span class="check">✓</span>Drei Wohnungsbaugesellschaften zu einer schlagkräftigen Einheit zusammenführen</li>
+          <li><span class="check">✓</span>Wohnbaumilliarde auf Rekordniveau verstetigen bis 2030</li>
+          <li><span class="check">✓</span>Digitalen Bauantrag zum Standard machen – Bürokratie reduzieren</li>
+          <li><span class="check">✓</span>Büros in Wohnraum umnutzen und Dachgeschossausbau erleichtern</li>
+          <li><span class="check">✓</span>Staatliche Wohnungen: keine Mieterhöhungen bis 2025</li>
+        </ul>
+        <div class="tag-cloud">
+          <span class="tag gold">3,5 % Grunderwerbsteuer</span>
+          <span class="tag">Bayern-Darlehen</span>
+          <span class="tag">Wohnbaumilliarde</span>
+          <span class="tag green">Eigenheim fördern</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- GESUNDHEIT -->
-<div class="detail-section" id="gesundheit">
+<div class="detail-section" id="gesundheit" style="background:var(--grey)">
   <div class="container">
     <div class="detail-grid">
       <div class="detail-content reveal-left">
@@ -1039,6 +1377,7 @@
           <li><span class="check">✓</span>Geburtshilfe: 28 Mio. Euro Förderung jährlich für Hebammen</li>
         </ul>
       </div>
+
       <div class="reveal-right">
         <div class="infographic">
           <h3 style="margin-bottom:24px;font-size:1.1rem;color:var(--blue)">Gesundheit in Zahlen</h3>
@@ -1063,6 +1402,73 @@
           <div style="padding:16px;background:rgba(0,85,200,0.05);border-radius:12px;font-size:0.85rem;color:var(--grey-dark);line-height:1.6">
             🏥 <strong style="color:var(--text)">Pflegegeld nur in Bayern:</strong> Das Landespflegegeld gibt es als einziges Bundesland in Bayern – aktuell profitieren über 400.000 Pflegebedürftige.
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KULTUR -->
+<div class="detail-section" id="kultur" style="background:var(--grey)">
+  <div class="container">
+    <div class="detail-grid reverse">
+      <div class="reveal-right">
+        <div class="infographic">
+          <h3 style="margin-bottom:24px;font-size:1.1rem;color:var(--blue)">Ehrenamt &amp; Gemeinschaft</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">
+            <div style="text-align:center;padding:20px 12px;background:rgba(150,50,200,0.07);border-radius:12px">
+              <div style="font-size:1.7rem;font-weight:900;color:#7030a0;line-height:1">1 von 2</div>
+              <div style="font-size:0.75rem;color:var(--grey-dark);margin-top:6px;line-height:1.4">Bayern engagiert sich ehrenamtlich</div>
+            </div>
+            <div style="text-align:center;padding:20px 12px;background:rgba(0,85,200,0.06);border-radius:12px">
+              <div style="font-size:1.7rem;font-weight:900;color:var(--blue);line-height:1">1. Dez.</div>
+              <div style="font-size:0.75rem;color:var(--grey-dark);margin-top:6px;line-height:1.4">Bayerischer Verfassungstag</div>
+            </div>
+          </div>
+          <div style="display:grid;gap:12px">
+            <div style="display:flex;gap:14px;align-items:center;padding:14px;background:rgba(150,50,200,0.06);border-radius:12px">
+              <span style="font-size:1.6rem;flex-shrink:0">🎭</span>
+              <div>
+                <div style="font-weight:800;font-size:0.9rem">Bayerische Dialektvielfalt</div>
+                <div style="font-size:0.78rem;color:var(--grey-dark)">Kulturerbe erhalten und weitergeben</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:center;padding:14px;background:rgba(0,85,200,0.05);border-radius:12px">
+              <span style="font-size:1.6rem;flex-shrink:0">✡️</span>
+              <div>
+                <div style="font-weight:800;font-size:0.9rem">Jüdisches Leben schützen</div>
+                <div style="font-size:0.78rem;color:var(--grey-dark)">Erhalten, fördern und verteidigen</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:center;padding:14px;background:rgba(150,50,200,0.06);border-radius:12px">
+              <span style="font-size:1.6rem;flex-shrink:0">🏔️</span>
+              <div>
+                <div style="font-weight:800;font-size:0.9rem">Heimat- und Traditionsvereine</div>
+                <div style="font-size:0.78rem;color:var(--grey-dark)">Trachten, Gebirgsschützen und Musikvereine unterstützen</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-content reveal-left">
+        <span class="section-eyebrow">Thema 15</span>
+        <h2>Zusammenhalt stärken, Identität bewahren.</h2>
+        <p>Unsere bayerische Identität ist unser Auftrag. Fast jeder zweite Bayer engagiert sich im Ehrenamt. Wir sind die Partei der Liberalitas Bavariae – „Leben und leben lassen" ist unser Grundprinzip.</p>
+        <ul class="goals-list">
+          <li><span class="check">✓</span>Bayerische Dialektvielfalt und Kulturerbe erhalten und weitergeben</li>
+          <li><span class="check">✓</span>Schutz christlicher Feiertage als Teil des bayerischen Kulturerbes</li>
+          <li><span class="check">✓</span>Heimat-, Trachten-, Gebirgsschützen- und Musikvereine unterstützen</li>
+          <li><span class="check">✓</span>Rundfunkgebühren einfrieren – keine weiteren Erhöhungen</li>
+          <li><span class="check">✓</span>Ehrenamt von Bürokratie entlasten – Vereinsrecht vereinfachen</li>
+          <li><span class="check">✓</span>1. Dezember als Bayerischen Verfassungstag stärken</li>
+          <li><span class="check">✓</span>Jüdisches Leben in Bayern erhalten, fördern und schützen</li>
+          <li><span class="check">✓</span>Sudetendeutsche und Heimatvertriebene als vierter Stamm Bayerns unterstützen</li>
+        </ul>
+        <div class="tag-cloud">
+          <span class="tag">Liberalitas Bavariae</span>
+          <span class="tag gold">Ehrenamt stärken</span>
+          <span class="tag">Demokratie</span>
+          <span class="tag green">Tradition &amp; Moderne</span>
         </div>
       </div>
     </div>
